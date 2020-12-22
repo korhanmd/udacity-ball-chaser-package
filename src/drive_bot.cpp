@@ -40,8 +40,8 @@ int main(int argc, char** argv)
     // Define a drive /ball_chaser/command_robot service with a handle_drive_request callback function
     ros::ServiceServer service = n.advertiseService("/ball_chaser/command_robot", handle_drive_request);
 
-    // TODO: Handle ROS communication events
-    //ros::spin();
+    // Handle ROS communication events
+    ros::spin();
 
     return 0;
 }
