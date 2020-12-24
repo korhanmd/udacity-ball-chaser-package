@@ -31,7 +31,6 @@ void process_image_callback(const sensor_msgs::Image img)
 	for (int i = 0; i < img.height * img.step; i += 3){
 		if ((img.data[i] == white_pixel) && (img.data[i+1] == white_pixel) && (img.data[i+2] == white_pixel)){
 			white_location = i;
-			std::cout << "White location: " << white_location << std::endl;
 			break;
 		}
 	}
@@ -41,8 +40,8 @@ void process_image_callback(const sensor_msgs::Image img)
 
 	// Consider leftmost 5/12 of the image as left and rightmost 5/12 of it as right
 	// Center 1/6 of it considered as center
-	float left_threshold = 5 * img.step / 12;
-	float right_threshold = 7 * img.step / 12;
+	float left_threshold = img.step / 3;
+	float right_threshold = 2 * img.step / 3;
 	
 	// Find the location in the row
 	int horizontal_location = white_location % img.step;
@@ -50,9 +49,9 @@ void process_image_callback(const sensor_msgs::Image img)
 	// Check if white ball detected	
 	if (white_location >= 0){
 		if (horizontal_location < left_threshold)
-			drive_robot(0.0, 0.5); // Turn left
+			drive_robot(0.0, 0.1); // Turn left
 		else if (horizontal_location > right_threshold)
-			drive_robot(0.0, -0.5); // Turn right
+			drive_robot(0.0, -0.1); // Turn right
 		else
 			drive_robot(0.5, 0.0); // Move forward
 	}
