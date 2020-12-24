@@ -47,8 +47,9 @@ void process_image_callback(const sensor_msgs::Image img)
 		else
 			drive_robot(0.5, 0.0); // Move forward
 	}
-    // TODO: Request a stop when there's no white ball seen by the camera
-
+    // Request a stop when there's no white ball seen by the camera
+	else
+		drive_robot(0.0, 0.0); // Stop
 }
 
 int main(int argc, char** argv)
