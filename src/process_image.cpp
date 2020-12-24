@@ -53,7 +53,7 @@ void process_image_callback(const sensor_msgs::Image img)
 		else if (horizontal_location > right_threshold)
 			drive_robot(0.0, -0.1); // Turn right
 		else
-			drive_robot(0.5, 0.0); // Move forward
+			drive_robot(0.1, 0.0); // Move forward
 	}
     // Request a stop when there's no white ball seen by the camera
 	else
