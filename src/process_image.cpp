@@ -41,13 +41,13 @@ void process_image_callback(const sensor_msgs::Image img)
 	// Consider leftmost 5/12 of the image as left and rightmost 5/12 of it as right
 	// Center 1/6 of it considered as center
 	float left_threshold = 5 * img.step / 12;
-	float left_threshold = 7 * img.step / 12;
+	float right_threshold = 7 * img.step / 12;
 	
 	// Find the location in the row
 	int horizontal_location = white_location % img.step;
 	
 	// Check if white ball detected	
-	if (white location >= 0){
+	if (white_location >= 0){
 		if (horizontal_location < left_threshold)
 			drive_robot(0.0, 0.5); // Turn left
 		else if (horizontal_location > right_threshold)
